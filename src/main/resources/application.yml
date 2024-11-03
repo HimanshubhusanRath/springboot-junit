@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+
+spring:
+  datasource:
+    url: "jdbc:derby:/Users/himanshubhusanrath/Documents/work/softwares/derby-db;create=true"
+    driver-class-name: "org.apache.derby.jdbc.EmbeddedDriver"
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # Controls schema generation. Options: none, validate, update, create, create-drop
+    properties:
+      hibernate:
+        dialect: "org.hibernate.dialect.DerbyTenSevenDialect" # Use the dialect version appropriate to your Derby version
