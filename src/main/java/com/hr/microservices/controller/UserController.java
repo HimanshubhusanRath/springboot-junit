@@ -3,6 +3,7 @@ package com.hr.microservices.controller;
 import com.hr.microservices.domain.User;
 import com.hr.microservices.exceptions.UserNotFoundException;
 import com.hr.microservices.repository.UserRepository;
+import com.hr.microservices.service.ExternalApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ExternalApiService externalApiService;
 
     @GetMapping("/all")
     public List<User> getAllUsers() {
@@ -58,6 +62,11 @@ public class UserController {
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
         userRepository.delete(user);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/info/{userId}")
+    public ResponseEntity<String> getUserDetails(@PathVariable("userId")final String userId) {
+        return ResponseEntity.ok(externalApiService.getUserDetails(userId));
     }
 
 }

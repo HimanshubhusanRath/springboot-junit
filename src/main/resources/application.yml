@@ -4,12 +4,20 @@ server:
 
 spring:
   datasource:
-    url: "jdbc:derby:/Users/himanshubhusanrath/Documents/work/softwares/derby-db;create=true"
+    url: "jdbc:derby:C:/Users/himanshu/Documents/temp/derby-db;create=true"
     driver-class-name: "org.apache.derby.jdbc.EmbeddedDriver"
+    hikari:
+      auto-commit: true
 
   jpa:
     hibernate:
       ddl-auto: update   # Controls schema generation. Options: none, validate, update, create, create-drop
     properties:
       hibernate:
-        dialect: "org.hibernate.dialect.DerbyTenSevenDialect" # Use the dialect version appropriate to your Derby version
+        dialect: "org.hibernate.dialect.DerbyDialect" # Use the dialect version appropriate to your Derby version
+        jdbc:
+          use_get_generated_keys: false
+
+
+app:
+  external-api: "http://external.com"
